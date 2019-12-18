@@ -25,3 +25,7 @@ describe('UniversalOrbit', function(){
   });
 });
 
+
+// USed this to remove line returns from the input file : 
+// cat D6-input.txt | tr -d '\n' > oneline.txt
+
