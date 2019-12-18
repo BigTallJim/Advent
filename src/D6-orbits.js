@@ -34,6 +34,39 @@ UniversalOrbit.prototype.calculateIndirectOrbits = function(){
 }
 
 UniversalOrbit.prototype.meToSanta = function(){
-    return 1;
+    youRoute = this.mapRouteBack("YOU");
+    santaRoute = this.mapRouteBack("SAN");
+    return this.checkRoutes(youRoute, santaRoute);
+}   
+
+UniversalOrbit.prototype.mapRouteBack = function(startPlanet){
+    moreAnscestors = true;
+    tempPlanet = startPlanet;
+    orbitCount = 0;
+    orbitChanges = new Map();
+    while (moreAnscestors ){
+        if (orbitsMap.has(tempPlanet)){
+            tempPlanet = orbitsMap.get(tempPlanet);
+            orbitChanges.set(tempPlanet, orbitCount);
+            orbitCount++;
+        }else{
+            moreAnscestors = false
+        }
+    };
+    return orbitChanges;
+}
+
+UniversalOrbit.prototype.checkRoutes = function(youRoute, santaRoute){
+    console.log(youRoute)
+    console.log(santaRoute)
+    orbitJumps = 0;
+    youRoute.forEach(function(count, planet){
+        if (santaRoute.has(planet)){
+            if (orbitJumps == 0){
+                orbitJumps = count + santaRoute.get(planet)
+            }
+        }
+    }) 
+    return orbitJumps
 }
 
