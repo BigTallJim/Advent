@@ -1,22 +1,29 @@
 function UniversalOrbit(){
+    orbitsMap = new Map();
+    indirectCount = 0;
 }
 
 UniversalOrbit.prototype.count = function(orbits){
     let pairs = orbits.split(" ");
-    let orbitsMap = new Map();
-    let directCount = 0;
-    let indirectCount = 0;
 
-    console.log(pairs);
+    this.createPlanetMap(pairs);
+    this.calculateIndirectOrbits();
+
+    return orbitsMap.size + indirectCount;
+}
+
+
+UniversalOrbit.prototype.createPlanetMap = function(pairs){
     pairs.forEach(function(pair){
         let parentPlanet = pair.split(')')[0];
         let  planet = pair.split(')')[1];
         orbitsMap.set(planet, parentPlanet);
     });
-    console.log(orbitsMap);
 
-    orbitsMap.forEach(function(parent, planet){
-        console.log(planet);
+}
+
+UniversalOrbit.prototype.calculateIndirectOrbits = function(){
+    orbitsMap.forEach(function(parent){
         tempParent = parent
         moreAnscestors = true
         while (moreAnscestors ){
@@ -29,10 +36,5 @@ UniversalOrbit.prototype.count = function(orbits){
         }
     });
 
-    directCount = orbitsMap.size;
-
-    return directCount + indirectCount;
 }
-
-
 
