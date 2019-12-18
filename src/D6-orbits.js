@@ -1,12 +1,10 @@
-function UniversalOrbit(){
+function UniversalOrbit(orbits){
     orbitsMap = new Map();
     indirectCount = 0;
+    this.createPlanetMap(orbits.split(","));
 }
 
-UniversalOrbit.prototype.count = function(orbits){
-    console.log(orbits)
-    this.createPlanetMap(orbits.split(","));
-    console.log(orbitsMap);
+UniversalOrbit.prototype.count = function(){
     this.calculateIndirectOrbits();
 
     return orbitsMap.size + indirectCount;
@@ -33,6 +31,9 @@ UniversalOrbit.prototype.calculateIndirectOrbits = function(){
             }
         }
     });
+}
 
+UniversalOrbit.prototype.meToSanta = function(){
+    return 1;
 }
 
