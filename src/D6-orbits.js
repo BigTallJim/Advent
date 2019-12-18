@@ -4,8 +4,9 @@ function UniversalOrbit(){
 }
 
 UniversalOrbit.prototype.count = function(orbits){
-
-    this.createPlanetMap(orbits.split(" "));
+    console.log(orbits)
+    this.createPlanetMap(orbits.split(","));
+    console.log(orbitsMap);
     this.calculateIndirectOrbits();
 
     return orbitsMap.size + indirectCount;
