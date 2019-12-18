@@ -9,8 +9,9 @@ describe('UniversalOrbit', function(){
     expect(orbits.count('COM)B B)C')).toEqual(3);
   });
 
-  // it("has 3 orbit when B orbits COM and C Orbits B and D Orbits C", function(){
-  //   let orbits = new UniversalOrbit();
-  //   expect(orbits.count('COM)B B)C C)D')).toEqual(6);
-  // });
+  it("has 3 orbit when B orbits COM and C Orbits B and D Orbits C", function(){
+    let orbits = new UniversalOrbit();
+    expect(orbits.count('COM)B B)C C)D')).toEqual(6);
+  });
+  
 });

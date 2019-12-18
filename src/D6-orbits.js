@@ -13,11 +13,19 @@ UniversalOrbit.prototype.count = function(orbits){
         let  planet = pair.split(')')[1];
         orbitsMap.set(planet, parentPlanet);
     });
+    console.log(orbitsMap);
 
-    orbitsMap.forEach(function(pair){
-        console.log(pair);
-        if (orbitsMap.has(pair)){
-            indirectCount++;
+    orbitsMap.forEach(function(parent, planet){
+        console.log(planet);
+        tempParent = parent
+        moreAnscestors = true
+        while (moreAnscestors ){
+            if (orbitsMap.has(tempParent)){
+                indirectCount++;
+                tempParent = orbitsMap.get(tempParent);
+            }else{
+                moreAnscestors = false
+            }
         }
     });
 
@@ -25,4 +33,6 @@ UniversalOrbit.prototype.count = function(orbits){
 
     return directCount + indirectCount;
 }
+
+
 
