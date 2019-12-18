@@ -4,9 +4,8 @@ function UniversalOrbit(){
 }
 
 UniversalOrbit.prototype.count = function(orbits){
-    let pairs = orbits.split(" ");
 
-    this.createPlanetMap(pairs);
+    this.createPlanetMap(orbits.split(" "));
     this.calculateIndirectOrbits();
 
     return orbitsMap.size + indirectCount;
@@ -15,9 +14,7 @@ UniversalOrbit.prototype.count = function(orbits){
 
 UniversalOrbit.prototype.createPlanetMap = function(pairs){
     pairs.forEach(function(pair){
-        let parentPlanet = pair.split(')')[0];
-        let  planet = pair.split(')')[1];
-        orbitsMap.set(planet, parentPlanet);
+        orbitsMap.set(pair.split(')')[1], pair.split(')')[0]);
     });
 
 }
