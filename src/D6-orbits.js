@@ -57,8 +57,6 @@ UniversalOrbit.prototype.mapRouteBack = function(startPlanet){
 }
 
 UniversalOrbit.prototype.checkRoutes = function(youRoute, santaRoute){
-    console.log(youRoute)
-    console.log(santaRoute)
     orbitJumps = 0;
     youRoute.forEach(function(count, planet){
         if (santaRoute.has(planet)){
